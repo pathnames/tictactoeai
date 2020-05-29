@@ -31,7 +31,12 @@ def make_move(board, move_coordinates, player):
    for i in range(3):
        for j in range(3):
            temp[i][j] = board[i][j]
-   temp[move_coordinates[0]][move_coordinates[1]] = player
+    
+   if temp[move_coordinates[0]][move_coordinates[1]] is None:
+       temp[move_coordinates[0]][move_coordinates[1]] = player
+   else:
+       raise Exception("Square is already occupied!")
+   
    return temp
 
 board = new_board()
@@ -39,4 +44,5 @@ render(board)
 move1 = get_move()
 print(move1)
 board = make_move(board, move1, 'X')
+board = make_move(board, move1, 'Y')
 render(board)
