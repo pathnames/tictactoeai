@@ -26,13 +26,19 @@ def get_move():
         move_dict = {1:[0, 0], 2: [0, 1], 3: [0, 2], 4: [1, 0], 5: [1, 1], 6:[1, 2], 7:[2, 0], 8: [2, 1], 9: [2, 2]}
         return move_dict[num]
 
+def is_valid_move(board, move_coordinates):
+    if board[move_coordinates[0]][move_coordinates[1]] is None:
+        return True
+    else:
+        return False
+
 def make_move(board, move_coordinates, player):
    temp = new_board()
    for i in range(3):
        for j in range(3):
            temp[i][j] = board[i][j]
     
-   if temp[move_coordinates[0]][move_coordinates[1]] is None:
+   if is_valid_move(board, move_coordinates):
        temp[move_coordinates[0]][move_coordinates[1]] = player
    else:
        raise Exception("Square is already occupied!")
