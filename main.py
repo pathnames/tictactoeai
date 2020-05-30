@@ -1,3 +1,4 @@
+import random
 def new_board():
     board = [[None for i in range(3)] for j in range(3)]
     # board[0][1] = 'X'
@@ -72,25 +73,35 @@ def get_winner(board):
         return board[0][2]
     else:
         return None
-# move1 = get_move()
-# print(move1)
-# board = make_move(board, move1, 'X')
-# #board = make_move(board, move1, 'Y')
-# render(board)
 
-player = 'X'
-move_num = 0
-board = new_board()
-render(board) 
-while(get_winner(board) == None and is_board_full(board) == False):
-    move = get_move()
-    board = make_move(board, move, player)
-    render(board)
-    move_num += 1
-    if move_num % 2 != 0: player = 'O'
-    else: player = 'X'
+#AI functions
+def random_ai(board, player):
+    move_dict = {1:[0, 0], 2: [0, 1], 3: [0, 2], 4: [1, 0], 5: [1, 1], 6:[1, 2], 7:[2, 0], 8: [2, 1], 9: [2, 2]}
+    move = move_dict[random.randint(1, 9)]
+    while(is_valid_move(board, move) == False):
+        move = move_dict[random.randint(1, 9)]
+    return move
 
-if get_winner(board) is None:
-    print("Tie!")
-else: 
-    print("Winner is {0}!".format(get_winner(board)))
+board = [
+  ['X', 'O', None],
+  ['O', 'O', None],
+  ['X', None, None]
+]
+print(random_ai(board, 'X'))
+
+# player = 'X'
+# move_num = 0
+# board = new_board()
+# render(board) 
+# while(get_winner(board) == None and is_board_full(board) == False):
+#     move = get_move()
+#     board = make_move(board, move, player)
+#     render(board)
+#     move_num += 1
+#     if move_num % 2 != 0: player = 'O'
+#     else: player = 'X'
+
+# if get_winner(board) is None:
+#     print("Tie!")
+# else: 
+#     print("Winner is {0}!".format(get_winner(board)))
