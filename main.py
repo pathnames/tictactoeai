@@ -60,9 +60,14 @@ def is_board_full(board):
 # #board = make_move(board, move1, 'Y')
 # render(board)
 
+player = 'X'
+move_num = 0
 board = new_board()
 render(board) 
 while(is_board_full(board) == False):
     move = get_move()
-    board = make_move(board, move, 'X')
+    board = make_move(board, move, player)
     render(board)
+    move_num += 1
+    if move_num % 2 != 0: player = 'O'
+    else: player = 'X'
