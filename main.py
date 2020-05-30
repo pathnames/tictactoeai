@@ -52,11 +52,17 @@ def is_board_full(board):
             if board[i][j] != None:
                 count += 1
     return count == 9
-    
+
+
+# move1 = get_move()
+# print(move1)
+# board = make_move(board, move1, 'X')
+# #board = make_move(board, move1, 'Y')
+# render(board)
+
 board = new_board()
 render(board) 
-move1 = get_move()
-print(move1)
-board = make_move(board, move1, 'X')
-#board = make_move(board, move1, 'Y')
-render(board)
+while(is_board_full(board) == False):
+    move = get_move()
+    board = make_move(board, move, 'X')
+    render(board)
