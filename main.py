@@ -82,26 +82,27 @@ def random_ai(board, player):
         move = move_dict[random.randint(1, 9)]
     return move
 
-board = [
-  ['X', 'O', None],
-  ['O', 'O', None],
-  ['X', None, None]
-]
-print(random_ai(board, 'X'))
+# board = [
+#   ['X', 'O', None],
+#   ['O', 'O', None],
+#   ['X', None, None]
+# ]
+# print(random_ai(board, 'X'))
 
-# player = 'X'
-# move_num = 0
-# board = new_board()
-# render(board) 
-# while(get_winner(board) == None and is_board_full(board) == False):
-#     move = get_move()
-#     board = make_move(board, move, player)
-#     render(board)
-#     move_num += 1
-#     if move_num % 2 != 0: player = 'O'
-#     else: player = 'X'
+player = 'X'
+move_num = 0
+board = new_board()
+render(board) 
+while(get_winner(board) == None and is_board_full(board) == False):
+    move = random_ai(board, player)
+    board = make_move(board, move, player)
+    render(board)
+    print()
+    move_num += 1
+    if move_num % 2 != 0: player = 'O'
+    else: player = 'X'
 
-# if get_winner(board) is None:
-#     print("Tie!")
-# else: 
-#     print("Winner is {0}!".format(get_winner(board)))
+if get_winner(board) is None:
+    print("Tie!")
+else: 
+    print("Winner is {0}!".format(get_winner(board)))
