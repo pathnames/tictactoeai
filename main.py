@@ -64,6 +64,14 @@ def get_winner(board):
         return board[1][0]
     elif board[2][0] == board[2][1] and board[2][1] == board[2][2] and board[2][0] != None and board[2][1] != None and board[2][2] != None:
         return board[2][0]
+    elif board[0][0] == board[1][0] and board[1][0] == board[2][0] and board[0][0] != None and board[1][0] != None and board[2][0] != None:
+        return board[0][0]
+    elif board[0][1] == board[1][1] and board[1][1] == board[2][1] and board[0][1] != None and board[1][1] != None and board[2][1] != None:
+        return board[0][1]
+    elif board[0][2] == board[1][2] and board[1][2] == board[2][2] and board[0][2] != None and board[1][2] != None and board[2][2] != None:
+        return board[0][2]
+    else:
+        return None
 # move1 = get_move()
 # print(move1)
 # board = make_move(board, move1, 'X')
@@ -74,7 +82,7 @@ player = 'X'
 move_num = 0
 board = new_board()
 render(board) 
-while(get_winner(board) == None):
+while(get_winner(board) == None and is_board_full(board) == False):
     move = get_move()
     board = make_move(board, move, player)
     render(board)
@@ -82,6 +90,7 @@ while(get_winner(board) == None):
     if move_num % 2 != 0: player = 'O'
     else: player = 'X'
 
-if player == 'X': player = 'O'
-elif player == 'O': player = 'X'
-print("Winner is {0}!".format(player))
+if get_winner(board) is None:
+    print("Tie!")
+else: 
+    print("Winner is {0}!".format(get_winner(board)))
