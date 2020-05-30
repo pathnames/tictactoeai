@@ -45,10 +45,18 @@ def make_move(board, move_coordinates, player):
    
    return temp
 
+def is_board_full(board):
+    count = 0
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] != None:
+                count += 1
+    return count == 9
+    
 board = new_board()
 render(board) 
 move1 = get_move()
 print(move1)
 board = make_move(board, move1, 'X')
-board = make_move(board, move1, 'Y')
+#board = make_move(board, move1, 'Y')
 render(board)
