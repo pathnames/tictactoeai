@@ -53,7 +53,11 @@ def is_board_full(board):
                 count += 1
     return count == 9
 
-
+def get_winner(board):
+    if board[0][0] == board[1][1] and board[1][1] == board[2][2] and board[0][0] != None and board[1][1] != None and board[2][2] != None:
+        return board[0][0]
+    elif board[0][2] == board[1][1] and board[1][1] == board[2][0] and board[0][2] != None and board[1][1] != None and board[2][0] != None:
+        return board[0][2]
 # move1 = get_move()
 # print(move1)
 # board = make_move(board, move1, 'X')
@@ -64,10 +68,14 @@ player = 'X'
 move_num = 0
 board = new_board()
 render(board) 
-while(is_board_full(board) == False):
+while(get_winner(board) == None):
     move = get_move()
     board = make_move(board, move, player)
     render(board)
     move_num += 1
     if move_num % 2 != 0: player = 'O'
     else: player = 'X'
+
+if player == 'X': player = 'O'
+elif player == 'O': player = 'X'
+print("Winner is {0}!".format(player))
